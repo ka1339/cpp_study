@@ -10,19 +10,18 @@ struct OrderLine
     int unit_price_cents;
 };
 
-// 반복자 범위의 각 항목에 projection을 적용하고 그 결과를 합산한다.
-// 반환형은 projection 결과에서 참조와 const 한정자를 제거해 정한다.
+// InputIt와 Projection은 함수 템플릿의 타입 매개변수이며, auto는 반환형 추론을 시작한다.
 template <typename InputIt, typename Projection>
+// -> 뒤의 후행 반환형은 매개변수 이름을 decltype에서 사용할 수 있게 한다.
 auto sum_by(InputIt first, InputIt last, Projection projection)
     -> typename std::decay<decltype(projection(*first))>::type
 {
+    // using은 별칭을 선언하고, decltype은 식의 타입을 얻으며, decay는 참조/한정자를 정리한다.
     using Result = typename std::decay<decltype(projection(*first))>::type;
 
-    // 기본값 0에서 시작하므로 빈 범위이면 0을 반환한다.
     Result total{};
     for (; first != last; ++first)
     {
-        // 원본 항목 자체가 아니라 projection이 뽑아낸 값만 더한다.
         total += projection(*first);
     }
     return total;
@@ -30,15 +29,16 @@ auto sum_by(InputIt first, InputIt last, Projection projection)
 
 int main()
 {
-    // 서로 다른 상품의 주문 수량과 개당 가격을 저장한 예시 데이터.
+    // 중괄호를 이용한 집합 초기화로 vector에 원소를 구성한다.
     const std::vector<OrderLine> order{
         {"COFFEE", 2, 450},
         {"SANDWICH", 1, 825}};
 
-    // 람다를 projection으로 전달해 각 주문 항목의 금액(수량 x 단가)을 합산한다.
+    // []는 람다의 캡처 목록, 매개변수 뒤의 { }는 함수 본문이다.
     const int subtotal_cents = sum_by(
         order.begin(),
         order.end(),
+        // const OrderLine&는 복사 없는 읽기 전용 참조 매개변수다.
         [](const OrderLine &line)
         {
             return line.quantity * line.unit_price_cents;
