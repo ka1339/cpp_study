@@ -1,0 +1,6 @@
+D:/project/CPP_TEST/build/CMakeFiles/example_namespaces.dir
+D:/project/CPP_TEST/build/CMakeFiles/example_function_templates.dir
+D:/project/CPP_TEST/build/CMakeFiles/example_class_templates.dir
+D:/project/CPP_TEST/build/CMakeFiles/example_variadic_templates.dir
+D:/project/CPP_TEST/build/CMakeFiles/edit_cache.dir
+D:/project/CPP_TEST/build/CMakeFiles/rebuild_cache.dir

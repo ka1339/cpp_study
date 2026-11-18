@@ -1,0 +1,11 @@
+# ninja log v7
+21	574	8167102681521528	CMakeFiles/CPP_TEST.dir/main.cpp.obj	adbafca3e8990445
+574	755	8167102687042024	CPP_TEST.exe	3fd0bb0ab6860d5a
+25	632	8167104469674528	CMakeFiles/example_namespaces.dir/examples/namespaces/main.cpp.obj	37509d98375bc58f
+632	799	8167104475754923	example_namespaces.exe	3f45fd19de385684
+41	608	8167119163418149	CMakeFiles/example_variadic_templates.dir/examples/variadic_templates/main.cpp.obj	dcdb49dfa8d229a6
+31	678	8167119163311600	CMakeFiles/example_function_templates.dir/examples/function_templates/main.cpp.obj	159e0fc56fd87a86
+608	795	8167119169093051	example_variadic_templates.exe	87a5f81b8b262ab6
+679	857	8167119169799076	example_function_templates.exe	2807e7910cc77259
+36	908	8167119163372638	CMakeFiles/example_class_templates.dir/examples/class_templates/main.cpp.obj	85bb3b045a147e22
+909	1079	8167119172095816	example_class_templates.exe	9cd8af31278a9702

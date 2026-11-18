@@ -1,0 +1,87 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "CPP_TEST",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "example_class_templates::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-example_class_templates-Debug-8ac60d503916740d6910.json",
+					"name" : "example_class_templates",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "example_function_templates::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-example_function_templates-Debug-3292fdd17fd2cc01dbd7.json",
+					"name" : "example_function_templates",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "example_namespaces::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-example_namespaces-Debug-f537f1fa67339c7a2c57.json",
+					"name" : "example_namespaces",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "example_variadic_templates::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-example_variadic_templates-Debug-6252000a97fdeaf6be82.json",
+					"name" : "example_variadic_templates",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/project/CPP_TEST/build",
+		"source" : "D:/project/CPP_TEST"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}
