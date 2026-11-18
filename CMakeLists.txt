@@ -10,4 +10,5 @@ add_example(namespaces examples/namespaces/main.cpp)
 add_example(function_templates examples/function_templates/main.cpp)
 add_example(class_templates examples/class_templates/main.cpp)
 add_example(variadic_templates examples/variadic_templates/main.cpp)
+add_example(class_initialization examples/class_initialization/main.cpp)
 

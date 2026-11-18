@@ -12,6 +12,12 @@ separate executable named `example_<name>`. Examples are compiled as C++17.
 - `variadic_templates`: build a type-safe log message from any number of
   streamable values.
 
+## Class initialization examples
+
+- `class_initialization`: initialize every member, respect member declaration
+  order, delegate constructors, validate invariants, and call virtual behavior
+  only after the derived object is fully constructed.
+
 ## Add an example
 
 1. Create a directory such as `examples/vectors/`.
