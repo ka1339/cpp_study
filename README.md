@@ -1,7 +1,8 @@
 # C++ Examples
 
 Each example lives in its own directory under `examples/` and builds as a
-separate executable named `example_<name>`. Examples are compiled as C++17.
+separate executable named `example_<name>`. Examples use C++17 unless noted;
+the modern synchronization examples use C++20.
 
 ## Template examples
 
@@ -76,12 +77,24 @@ separate executable named `example_<name>`. Examples are compiled as C++17.
 ## Concurrency examples
 
 - `sync_atomic_counter`: use an atomic for independent, simple shared values
-  that need indivisible updates. Use a mutex when an invariant spans multiple
-  values or an operation cannot be expressed atomically.
+  that need indivisible updates, and `wait`/`notify` to block until an atomic
+  value changes. Use a mutex when an invariant spans multiple values or an
+  operation cannot be expressed atomically.
 - `sync_bounded_queue`: use a mutex to protect related queue state and
   condition variables when threads should sleep until a predicate becomes
   true. Do not use a condition variable as a replacement for the mutex that
   protects the predicate and shared state.
+- `sync_mutexes`: protect exclusive updates with `mutex` and `lock_guard`,
+  safely lock multiple mutexes with `scoped_lock`, and allow concurrent reads
+  with `shared_mutex` and `shared_lock`; use `call_once` for one-time setup.
+- `sync_futures`: return values from asynchronous work with `async`/`future`
+  and communicate a result from a thread with `promise`/`future`.
+- `sync_semaphore`: use a counting semaphore to limit how many threads can
+  access a fixed number of resources at once.
+- `sync_latch_barrier`: use a latch for one-time coordination and a barrier to
+  synchronize participating threads at repeated phase boundaries.
+- `sync_jthread`: use `jthread` for automatic joining and `stop_token` with a
+  stop-aware condition-variable wait for cooperative cancellation.
 - `thread_pool`: register named commands, queue requests for worker threads,
   then drain pending work and join workers after the `exit` command is queued.
   The module is in `examples/thread_pool/include/` and `src/`.

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10.0)
+cmake_minimum_required(VERSION 3.12.0)
 project(CPP_TEST VERSION 0.1.0 LANGUAGES C CXX)
 
 function(add_example name)
@@ -33,14 +33,38 @@ add_example(data_stack examples/data_structures/stack/main.cpp)
 add_example(data_queue examples/data_structures/queue/main.cpp)
 add_example(sync_atomic_counter examples/synchronization/atomic_counter/main.cpp)
 add_example(sync_bounded_queue examples/synchronization/bounded_queue/main.cpp)
+add_example(sync_mutexes examples/synchronization/mutexes/main.cpp)
+add_example(sync_futures examples/synchronization/futures/main.cpp)
+add_example(sync_semaphore examples/synchronization/semaphore/main.cpp)
+add_example(sync_latch_barrier examples/synchronization/latch_barrier/main.cpp)
+add_example(sync_jthread examples/synchronization/jthread/main.cpp)
 add_example(
     thread_pool
     examples/thread_pool/main.cpp
     examples/thread_pool/src/thread_pool.cpp
 )
 target_include_directories(example_thread_pool PRIVATE examples/thread_pool/include)
+
+set_target_properties(
+    example_sync_atomic_counter
+    example_sync_mutexes
+    example_sync_futures
+    example_sync_semaphore
+    example_sync_latch_barrier
+    example_sync_jthread
+    PROPERTIES
+    CXX_STANDARD 20
+    CXX_STANDARD_REQUIRED YES
+    CXX_EXTENSIONS NO
+)
+
 find_package(Threads REQUIRED)
 target_link_libraries(example_sync_atomic_counter PRIVATE Threads::Threads)
 target_link_libraries(example_sync_bounded_queue PRIVATE Threads::Threads)
+target_link_libraries(example_sync_mutexes PRIVATE Threads::Threads)
+target_link_libraries(example_sync_futures PRIVATE Threads::Threads)
+target_link_libraries(example_sync_semaphore PRIVATE Threads::Threads)
+target_link_libraries(example_sync_latch_barrier PRIVATE Threads::Threads)
+target_link_libraries(example_sync_jthread PRIVATE Threads::Threads)
 target_link_libraries(example_thread_pool PRIVATE Threads::Threads)
 
