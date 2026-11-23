@@ -20,4 +20,12 @@ add_example(class_initialization examples/class_initialization/main.cpp)
 add_example(class_copying examples/class_copying/main.cpp)
 add_example(operator_overloading examples/operator_overloading/main.cpp)
 add_example(uniform_initialization examples/uniform_initialization/main.cpp)
+add_example(
+    thread_pool
+    examples/thread_pool/main.cpp
+    examples/thread_pool/src/thread_pool.cpp
+)
+target_include_directories(example_thread_pool PRIVATE examples/thread_pool/include)
+find_package(Threads REQUIRED)
+target_link_libraries(example_thread_pool PRIVATE Threads::Threads)
 

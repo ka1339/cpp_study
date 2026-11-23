@@ -39,6 +39,12 @@ separate executable named `example_<name>`. Examples are compiled as C++17.
 - `operator_overloading`: implement compound assignment, addition, equality,
   and stream output while preserving familiar operator behavior.
 
+## Concurrency examples
+
+- `thread_pool`: register named commands, queue requests for worker threads,
+  then drain pending work and join workers after the `exit` command is queued.
+  The module is in `examples/thread_pool/include/` and `src/`.
+
 ## Add an example
 
 1. Create a directory such as `examples/vectors/`.
