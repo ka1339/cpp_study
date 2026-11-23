@@ -61,6 +61,8 @@ separate executable named `example_<name>`. Examples are compiled as C++17.
   elements.
 - `data_deque`: choose `deque` for efficient insertion/removal at both ends
   with indexed access, when contiguous storage is not required.
+- `data_set`: choose `set` for sorted, unique keys and logarithmic lookup;
+  iteration follows key order and duplicate values are ignored.
 - `data_map`: choose `map` when keys must stay sorted or ordered traversal and
   predictable logarithmic lookup are needed.
 - `data_unordered_map`: choose `unordered_map` for average constant-time key

@@ -72,8 +72,8 @@ private:
 
 int main()
 {
-    // The mutex protects the queue and its closed flag as one shared state.
-    // Condition variables let threads sleep until the corresponding predicate holds.
+    // mutex는 큐와 종료 상태를 하나의 공유 상태로 보호한다.
+    // condition_variable은 술어가 만족될 때까지 생산자와 소비자를 효율적으로 재운다.
     BoundedQueue queue(2);
     std::thread producer([&queue]
                          {
