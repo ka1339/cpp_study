@@ -1,9 +1,19 @@
 cmake_minimum_required(VERSION 3.12.0)
 project(CPP_TEST VERSION 0.1.0 LANGUAGES C CXX)
 
+file(WRITE "${CMAKE_BINARY_DIR}/cpp_targets.txt" "")
+
 function(add_example name)
     add_executable(example_${name} ${ARGN})
     target_compile_features(example_${name} PRIVATE cxx_std_17)
+
+    foreach(source IN LISTS ARGN)
+        get_filename_component(
+            source_path "${source}" ABSOLUTE
+            BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
+        )
+        file(APPEND "${CMAKE_BINARY_DIR}/cpp_targets.txt" "${source_path}\texample_${name}\n")
+    endforeach()
 endfunction()
 
 add_example(

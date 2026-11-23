@@ -117,3 +117,11 @@ the modern synchronization examples use C++20.
    ```
 
 The resulting executable is `build/example_vectors.exe` on Windows.
+
+## Build and run the active file in VS Code
+
+Open a `.cpp` file that belongs to a CMake executable target, then press
+`Ctrl+Shift+B` and choose **Build and run active C++ file** if prompted. The
+task configures the CMake project, builds the target containing the active
+file, and runs its executable in the terminal. Interactive examples can read
+input from that terminal.
