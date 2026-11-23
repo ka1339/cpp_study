@@ -20,6 +20,18 @@ add_example(class_initialization examples/class_initialization/main.cpp)
 add_example(class_copying examples/class_copying/main.cpp)
 add_example(operator_overloading examples/operator_overloading/main.cpp)
 add_example(uniform_initialization examples/uniform_initialization/main.cpp)
+add_example(standard_algorithms examples/standard_library/algorithms/main.cpp)
+add_example(standard_optional examples/standard_library/optional/main.cpp)
+add_example(standard_string_view examples/standard_library/string_view/main.cpp)
+add_example(standard_variant examples/standard_library/variant/main.cpp)
+add_example(data_vector examples/data_structures/vector/main.cpp)
+add_example(data_deque examples/data_structures/deque/main.cpp)
+add_example(data_map examples/data_structures/map/main.cpp)
+add_example(data_unordered_map examples/data_structures/unordered_map/main.cpp)
+add_example(data_stack examples/data_structures/stack/main.cpp)
+add_example(data_queue examples/data_structures/queue/main.cpp)
+add_example(sync_atomic_counter examples/synchronization/atomic_counter/main.cpp)
+add_example(sync_bounded_queue examples/synchronization/bounded_queue/main.cpp)
 add_example(
     thread_pool
     examples/thread_pool/main.cpp
@@ -27,5 +39,7 @@ add_example(
 )
 target_include_directories(example_thread_pool PRIVATE examples/thread_pool/include)
 find_package(Threads REQUIRED)
+target_link_libraries(example_sync_atomic_counter PRIVATE Threads::Threads)
+target_link_libraries(example_sync_bounded_queue PRIVATE Threads::Threads)
 target_link_libraries(example_thread_pool PRIVATE Threads::Threads)
 

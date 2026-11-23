@@ -39,8 +39,47 @@ separate executable named `example_<name>`. Examples are compiled as C++17.
 - `operator_overloading`: implement compound assignment, addition, equality,
   and stream output while preserving familiar operator behavior.
 
+## Standard library examples
+
+- `standard_algorithms`: use standard algorithms such as `sort` and
+  `find_if` when a standard operation expresses the task clearly; prefer them
+  over hand-written loops for common transformations and searches.
+- `standard_optional`: use `optional` when a function may have no result and
+  that absence is a normal outcome. Use an error/result type when callers need
+  details about why an operation failed.
+- `standard_string_view`: use `string_view` for read-only text parameters when
+  the callee does not need ownership. Do not retain it past the lifetime of
+  the referenced string; use `string` when the callee must own the text.
+- `standard_variant`: use `variant` when a value can be one of a closed set of
+  known types. Use a class hierarchy or another abstraction when alternatives
+  are open-ended or need shared runtime behavior.
+
+## Data structure examples
+
+- `data_vector`: choose `vector` for contiguous storage, fast indexed access,
+  and efficient append at the end; middle insertions and erasures move later
+  elements.
+- `data_deque`: choose `deque` for efficient insertion/removal at both ends
+  with indexed access, when contiguous storage is not required.
+- `data_map`: choose `map` when keys must stay sorted or ordered traversal and
+  predictable logarithmic lookup are needed.
+- `data_unordered_map`: choose `unordered_map` for average constant-time key
+  lookup when iteration order is irrelevant; hash collisions can degrade
+  performance.
+- `data_stack`: choose `stack` when only the most recently added item should
+  be accessed or removed (LIFO), such as undo history.
+- `data_queue`: choose `queue` when items should be processed in arrival order
+  (FIFO), such as pending requests.
+
 ## Concurrency examples
 
+- `sync_atomic_counter`: use an atomic for independent, simple shared values
+  that need indivisible updates. Use a mutex when an invariant spans multiple
+  values or an operation cannot be expressed atomically.
+- `sync_bounded_queue`: use a mutex to protect related queue state and
+  condition variables when threads should sleep until a predicate becomes
+  true. Do not use a condition variable as a replacement for the mutex that
+  protects the predicate and shared state.
 - `thread_pool`: register named commands, queue requests for worker threads,
   then drain pending work and join workers after the `exit` command is queued.
   The module is in `examples/thread_pool/include/` and `src/`.
