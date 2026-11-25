@@ -99,6 +99,16 @@ the modern synchronization examples use C++20.
   then drain pending work and join workers after the `exit` command is queued.
   The module is in `examples/thread_pool/include/` and `src/`.
 
+## Networking examples
+
+- `network_socket`: open a TCP listener on the loopback interface and exchange
+  an echo message, showing socket creation, connect/accept, send/receive, and
+  shutdown without contacting another machine.
+- `network_http`: send a basic HTTP/1.1 GET request to a local server and
+  inspect the request and response headers and body.
+- `network_mqtt`: build and print MQTT 3.1.1 CONNECT and QoS 0 PUBLISH packets
+  in hexadecimal. This packet-format example does not require an MQTT broker.
+
 ## Add an example
 
 1. Create a directory such as `examples/vectors/`.

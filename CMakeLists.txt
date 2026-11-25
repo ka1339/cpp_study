@@ -54,6 +54,9 @@ add_example(
     examples/thread_pool/src/thread_pool.cpp
 )
 target_include_directories(example_thread_pool PRIVATE examples/thread_pool/include)
+add_example(network_socket examples/networking/socket/main.cpp)
+add_example(network_http examples/networking/http/main.cpp)
+add_example(network_mqtt examples/networking/mqtt/main.cpp)
 
 set_target_properties(
     example_sync_atomic_counter
@@ -77,4 +80,11 @@ target_link_libraries(example_sync_semaphore PRIVATE Threads::Threads)
 target_link_libraries(example_sync_latch_barrier PRIVATE Threads::Threads)
 target_link_libraries(example_sync_jthread PRIVATE Threads::Threads)
 target_link_libraries(example_thread_pool PRIVATE Threads::Threads)
+target_link_libraries(example_network_socket PRIVATE Threads::Threads)
+target_link_libraries(example_network_http PRIVATE Threads::Threads)
+
+if(WIN32)
+    target_link_libraries(example_network_socket PRIVATE ws2_32)
+    target_link_libraries(example_network_http PRIVATE ws2_32)
+endif()
 
