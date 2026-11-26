@@ -101,13 +101,45 @@ the modern synchronization examples use C++20.
 
 ## Networking examples
 
-- `network_socket`: open a TCP listener on the loopback interface and exchange
-  an echo message, showing socket creation, connect/accept, send/receive, and
-  shutdown without contacting another machine.
-- `network_http`: send a basic HTTP/1.1 GET request to a local server and
-  inspect the request and response headers and body.
+- `network_socket_receiver` and `network_socket_sender`: run the receiver and
+  sender as separate programs to exchange a TCP echo message on loopback.
+- `network_http_server` and `network_http_client`: run a local HTTP server and
+  a separate client to inspect an HTTP/1.1 GET request and response.
 - `network_mqtt`: build and print MQTT 3.1.1 CONNECT and QoS 0 PUBLISH packets
-  in hexadecimal. This packet-format example does not require an MQTT broker.
+  in hexadecimal.
+- `network_mqtt_broker`, `network_mqtt_subscriber`, and
+  `network_mqtt_publisher`: run the broker first, then the subscriber, then
+  the publisher. The demo broker listens only on `127.0.0.1:1883` by default;
+  pass the same port as the first argument to all three programs to choose
+  another port. The broker supports MQTT 3.1.1 clean sessions, QoS 0
+  publish/subscribe, and topic filters with `+` and `#`. It is an educational
+  example, not a production broker: it does not provide authentication,
+  encryption, retained messages, persistence, or QoS 1/2.
+
+On Windows, start each program in a separate terminal. For example:
+
+```powershell
+# Terminal 1
+.\build\example_network_socket_receiver.exe
+# Terminal 2
+.\build\example_network_socket_sender.exe
+
+# Terminal 1
+.\build\example_network_http_server.exe
+# Terminal 2
+.\build\example_network_http_client.exe
+
+# Terminal 1
+.\build\example_network_mqtt_broker.exe
+# Terminal 2
+.\build\example_network_mqtt_subscriber.exe
+# Terminal 3
+.\build\example_network_mqtt_publisher.exe
+```
+
+Press `Ctrl+C` to stop the broker. The socket and HTTP receivers/servers
+handle one connection per run; start the sender/client only after the
+receiver/server is listening.
 
 ## Add an example
 

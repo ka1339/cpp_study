@@ -176,6 +176,57 @@ inline Socket connect_loopback(unsigned short port)
     return connection;
 }
 
+inline Socket make_loopback_listener_on(unsigned short port)
+{
+    Socket listener = create_tcp_socket();
+    sockaddr_in address{};
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+    address.sin_port = htons(port);
+
+    if (::bind(listener.get(), reinterpret_cast<sockaddr *>(&address),
+               static_cast<SocketLength>(sizeof(address))) != 0)
+    {
+        throw_socket_error("bind");
+    }
+    if (::listen(listener.get(), 16) != 0)
+    {
+        throw_socket_error("listen");
+    }
+    return listener;
+}
+
+inline bool receive_exact(
+    const Socket &connection, char *buffer, std::size_t length, bool allow_eof = false)
+{
+    std::size_t received_total = 0;
+    while (received_total < length)
+    {
+#ifdef _WIN32
+        const int received = ::recv(
+            connection.get(), buffer + received_total,
+            static_cast<int>(length - received_total), 0);
+#else
+        const ssize_t received = ::recv(
+            connection.get(), buffer + received_total, length - received_total, 0);
+#endif
+        if (received == 0)
+        {
+            if (allow_eof && received_total == 0)
+            {
+                return false;
+            }
+            throw std::runtime_error("connection closed before all bytes arrived");
+        }
+        if (received < 0)
+        {
+            throw_socket_error("recv");
+        }
+        received_total += static_cast<std::size_t>(received);
+    }
+    return true;
+}
+
 inline Socket accept_connection(const Socket &listener)
 {
     const SocketHandle handle =
